@@ -3,6 +3,7 @@
               [neko.debug :refer [*a]]
               [neko.notify :refer [toast]]
               [neko.intent :as intent]
+              [neko.data :refer [like-map]]
               [neko.resource :as res]
               [neko.find-view :refer [find-view]]
               [neko.threading :refer [on-ui]])
@@ -29,20 +30,21 @@
 
 
 (defn page-1 [activity]
-  [:linear-layout {:orientation :vertical}
-   [:text-view {:text "Page 1 - MainActivity"}]
-   [:text-view {:text "Message from other page:"}]
-   [:text-view {:text "XXXX"}]
-   [:edit-text {:id ::user-input
-                :hint "Message to other page"
-                :layout-width :fill}]
-   [:button {:text "Switch to page 2"
-             ;; :on-click (fn [_] (launch-second-activity activity "Kalle"))
-             :on-click (fn [_] (launch-second-activity
-                                activity
-                                (.getText (find-view activity ::user-input))))
-             }]
-   ])
+  (let [{:keys [msg]} (like-map (.getIntent activity))]
+    [:linear-layout {:orientation :vertical}
+     [:text-view {:text "Page 1 - MainActivity"}]
+     [:text-view {:text "Message from other page:"}]
+     ;; [:text-view {:text "XXXX"}]
+     [:text-view {:text (or msg "default")}]
+     [:edit-text {:id ::user-input
+                  :hint "Message to other page"
+                  :layout-width :fill}]
+     [:button {:text "Switch to page 2"
+               :on-click (fn [_] (launch-second-activity
+                                  activity
+                                  (.getText (find-view activity ::user-input))))
+               }]
+     ]))
 
 
 (defactivity se.nyrell.dualactivity.MainActivity

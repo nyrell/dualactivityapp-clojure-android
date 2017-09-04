@@ -34,12 +34,15 @@
     [:linear-layout {:orientation :vertical}
      [:text-view {:text "Page 2 - SecondActivity"}]
      [:text-view {:text "Message from other page:"}]
-     [:text-view {:text msg}]
+     [:text-view {:text (or msg "")}]
      [:edit-text {:id ::user-input
                   :hint "Message to other page"
                   :layout-width :fill}]
      [:button {:text "Switch to page 1"
-               :on-click (fn [_] (launch-other-activity activity "Kalle2"))
+               ;; :on-click (fn [_] (launch-other-activity activity "Kalle2"))
+               :on-click (fn [_] (launch-other-activity
+                                  activity
+                                  (.getText (find-view activity ::user-input))))
                }]
      ]))
 
