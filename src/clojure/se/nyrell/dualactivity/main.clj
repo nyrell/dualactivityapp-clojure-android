@@ -7,7 +7,8 @@
               [neko.resource :as res]
               [neko.find-view :refer [find-view]]
               [neko.threading :refer [on-ui]])
-    (:import android.widget.EditText))
+    (:import android.widget.EditText
+             android.support.v7.app.AppCompatActivity))
 
 ;; We execute this function to import all subclasses of R class. This gives us
 ;; access to all application resources.
@@ -35,7 +36,7 @@
      [:text-view {:text "Page 1 - MainActivity"}]
      [:text-view {:text "Message from other page:"}]
      ;; [:text-view {:text "XXXX"}]
-     [:text-view {:text (or msg "default")}]
+     [:text-view {:text (or msg "")}]
      [:edit-text {:id ::user-input
                   :hint "Message to other page"
                   :layout-width :fill}]
@@ -49,6 +50,7 @@
 
 (defactivity se.nyrell.dualactivity.MainActivity
   :key :main
+  :extends AppCompatActivity
 
   (onCreate [this bundle]
     (.superOnCreate this bundle)

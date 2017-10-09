@@ -7,7 +7,8 @@
               [neko.resource :as res]
               [neko.find-view :refer [find-view]]
               [neko.threading :refer [on-ui]])
-    (:import android.widget.EditText))
+    (:import android.widget.EditText
+             android.support.v7.app.AppCompatActivity))
 
 ;; We execute this function to import all subclasses of R class. This gives us
 ;; access to all application resources.
@@ -49,6 +50,7 @@
 
 (defactivity se.nyrell.dualactivity.SecondActivity
   :key :second
+  :extends AppCompatActivity
 
   (onCreate [this bundle]
     (.superOnCreate this bundle)

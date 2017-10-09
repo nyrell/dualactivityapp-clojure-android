@@ -12,7 +12,9 @@
   :plugins [[lein-droid "0.4.6"]]
 
   :dependencies [[org.clojure-android/clojure "1.7.0-r4"]
-                 [neko/neko "4.0.0-alpha5"]]
+                 [neko/neko "4.0.0-alpha5"]
+                 [org.clojure-android/data.json "0.2.6-SNAPSHOT"]
+                 [com.android.support/design "22.2.1" :extension "aar"]]
   :profiles {:default [:dev]
 
              :dev
@@ -54,7 +56,7 @@
             ;; Increase this value if dexer fails with OutOfMemoryException.
             :dex-opts ["-JXmx4096M" "--incremental"]
 
-            :target-version "15"
+            :target-version "21"
             :aot-exclude-ns ["clojure.parallel" "clojure.core.reducers"
                              "cider.nrepl" "cider-nrepl.plugin"
                              "cider.nrepl.middleware.util.java.parser"

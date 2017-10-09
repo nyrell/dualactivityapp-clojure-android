@@ -4,13 +4,15 @@
           android:versionCode="{{version-code}}"
           android:versionName="{{version-name}}" >
 
-  <uses-sdk android:minSdkVersion="15"
-            android:targetSdkVersion="{{target-version}}" />
+  <!-- <uses-sdk android:minSdkVersion="15" android:targetSdkVersion="{{target-version}}" /> -->
+  <uses-sdk android:minSdkVersion="15" />
 
   <application
       android:name="neko.App"
       android:icon="@drawable/ic_launcher"
-      android:label="DualActivityApp">
+      android:label="DualActivityApp"
+      android:theme="@style/Theme.MainTheme">
+    
     <activity android:name=".SplashActivity"
               android:theme="@android:style/Theme.Translucent.NoTitleBar">
       <intent-filter>
