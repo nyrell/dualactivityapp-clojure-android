@@ -29,7 +29,6 @@
   [a msg]
   (.startActivity a (intent/intent a '.MainActivity {:msg msg})))
 
-
 (defn page-2 [activity]
   (let [{:keys [msg]} (like-map (.getIntent activity))]
     [:linear-layout {:orientation :vertical}
@@ -46,7 +45,6 @@
                                   (.getText (find-view activity ::user-input))))
                }]
      ]))
-
 
 (defactivity se.nyrell.dualactivity.SecondActivity
   :key :second

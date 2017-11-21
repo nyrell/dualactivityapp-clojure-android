@@ -29,13 +29,11 @@
   [a msg]
   (.startActivity a (intent/intent a '.SecondActivity {:msg msg})))
 
-
 (defn page-1 [activity]
   (let [{:keys [msg]} (like-map (.getIntent activity))]
     [:linear-layout {:orientation :vertical}
      [:text-view {:text "Page 1 - MainActivity"}]
      [:text-view {:text "Message from other page:"}]
-     ;; [:text-view {:text "XXXX"}]
      [:text-view {:text (or msg "")}]
      [:edit-text {:id ::user-input
                   :hint "Message to other page"
@@ -47,7 +45,6 @@
                }]
      ]))
 
-
 (defactivity se.nyrell.dualactivity.MainActivity
   :key :main
   :extends AppCompatActivity
@@ -58,8 +55,6 @@
     (on-ui
       (set-content-view! (*a) (page-1 (*a)))
       )))
-
-
 
 
 ;; This is how an Activity is defined. We create one and specify its onCreate
@@ -81,5 +76,4 @@
 ;;          [:button {:text R$string/touch_me ;; We use resource here, but could
 ;;                                            ;; have used a plain string too.
 ;;                    :on-click (fn [_] (notify-from-edit (*a)))}]]))))
-
 
